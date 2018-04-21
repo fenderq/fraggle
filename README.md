@@ -1,0 +1,2 @@
+# fraggle
+Diceware passphrase generator.
