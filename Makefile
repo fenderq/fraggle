@@ -1,5 +1,5 @@
 PROG=		fraggle
-SRCS=		fraggle.c diceware.c
+SRCS=		main.c diceware.c
 
 CFLAGS+=	-Wall -I${.CURDIR}
 CFLAGS+=	-Wstrict-prototypes -Wmissing-prototypes

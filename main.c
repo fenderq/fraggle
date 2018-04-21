@@ -22,6 +22,9 @@
 
 #include "diceware.h"
 
+#define COUNT_MAX (1024 * 64)
+#define WORD_MAX 32
+
 extern char *optarg;
 
 __dead void usage(void);
@@ -43,7 +46,7 @@ main(int argc, char *argv[])
 	while ((ch = getopt(argc, argv, "c:")) != -1) {
 		switch (ch) {
 		case 'c':
-			count = strtonum(optarg, 1, 1024 * 64, &ep);
+			count = strtonum(optarg, 1, COUNT_MAX, &ep);
 			if (ep != NULL)
 				errx(1, "%s %s", optarg, ep);
 			break;
@@ -59,7 +62,7 @@ main(int argc, char *argv[])
 		usage();
 
 	strlcpy(fname, argv[0], sizeof(fname));
-	words = strtonum(argv[1], 1, 32, &ep);
+	words = strtonum(argv[1], 1, WORD_MAX, &ep);
 	if (ep != NULL)
 		errx(1, "%s %s", argv[1], ep);
 
