@@ -8,6 +8,6 @@ CFLAGS+=	-Wshadow -Wpointer-arith
 CFLAGS+=	-Wsign-compare -Wcast-qual
 
 BINDIR=		/usr/local/bin
-NOMAN=		noman
+MANDIR=		/usr/local/man/man
 
 .include <bsd.prog.mk>
