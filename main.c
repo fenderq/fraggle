@@ -75,6 +75,6 @@ main(int argc, char *argv[])
 void
 usage(void)
 {
-	fprintf(stderr, "usage: %s [-c count] <file> <words>\n", getprogname());
+	fprintf(stderr, "usage: %s [-c count] file words\n", getprogname());
 	exit(EXIT_FAILURE);
 }
