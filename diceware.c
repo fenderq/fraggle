@@ -81,6 +81,7 @@ dwfile_free(struct dwfile *dw)
 	dwlist_free(&dw->head);
 	free(dw->words);
 	dw->words = NULL;
+	dw->items = 0;
 }
 
 static int
