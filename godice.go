@@ -62,6 +62,9 @@ func printDiceware(list []DicewareEntry, numWords int) {
 	for i := 0; i < numWords; i++ {
 		// Generate random index.
 		max := int64(len(list)) - 1
+		if max <= 0 {
+			log.Fatal("missing diceware entries")
+		}
 		index, err := rand.Int(rand.Reader, big.NewInt(max))
 		if err != nil {
 			log.Fatal(err)
