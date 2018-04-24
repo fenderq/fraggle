@@ -61,7 +61,7 @@ func main() {
 func printDiceware(list []DicewareEntry, numWords int) {
 	for i := 0; i < numWords; i++ {
 		// Generate random index.
-		max := int64(len(list))
+		max := int64(len(list)) - 1
 		index, err := rand.Int(rand.Reader, big.NewInt(max))
 		if err != nil {
 			log.Fatal(err)
