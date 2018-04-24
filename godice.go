@@ -61,12 +61,13 @@ func main() {
 func printDiceware(list []DicewareEntry, numWords int) {
 	for i := 0; i < numWords; i++ {
 		// Generate random index.
-		index, err := rand.Int(rand.Reader, big.NewInt(7776))
+		max := int64(len(list))
+		index, err := rand.Int(rand.Reader, big.NewInt(max))
 		if err != nil {
 			log.Fatal(err)
 		}
 		// Print random word.
-		fmt.Printf("%s", list[index.Uint64()].word)
+		fmt.Printf("%s", list[index.Int64()].word)
 		if i == numWords - 1 {
 			fmt.Printf("\n")
 		} else {
