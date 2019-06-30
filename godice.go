@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2018 Steven Roberts <sroberts@fenderq.com>
+// Copyright (c) 2018, 2019 Steven Roberts <sroberts@fenderq.com>
 //
 // Permission to use, copy, modify, and distribute this software for any
 // purpose with or without fee is hereby granted, provided that the above
@@ -29,31 +29,31 @@ import (
 )
 
 type DicewareEntry struct {
-	num int
+	num  int
 	word string
 }
 
 func main() {
-	var count int
-	var fname string
+	var fileName string
+	var numPassphrases int
 	var numWords int
 
 	// Get command-line arguments.
-	flag.IntVar(&count, "c", 1, "number of words")
-	flag.StringVar(&fname, "f", "", "diceware file")
-	flag.IntVar(&numWords, "n", 0, "number of words")
+	flag.StringVar(&fileName, "f", "", "diceware file")
+	flag.IntVar(&numPassphrases, "n", 1, "number of passphrases")
+	flag.IntVar(&numWords, "w", 6, "number of words")
 	flag.Parse()
 
-	if fname == "" || numWords == 0 {
+	if fileName == "" || numWords == 0 {
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
 	// Load diceware file.
-	list := loadDiceware(fname)
+	list := loadDiceware(fileName)
 
 	// Print diceware passphrases.
-	for i := 0; i < count; i++ {
+	for i := 0; i < numPassphrases; i++ {
 		printDiceware(list, numWords)
 	}
 }
@@ -71,7 +71,7 @@ func printDiceware(list []DicewareEntry, numWords int) {
 		}
 		// Print random word.
 		fmt.Printf("%s", list[index.Int64()].word)
-		if i == numWords - 1 {
+		if i == numWords-1 {
 			fmt.Printf("\n")
 		} else {
 			fmt.Printf(" ")
@@ -90,10 +90,10 @@ func NewDicewareEntry(line string) DicewareEntry {
 	return d
 }
 
-func loadDiceware(fname string) []DicewareEntry {
+func loadDiceware(fileName string) []DicewareEntry {
 	// Open the file.
 	list := []DicewareEntry{}
-	file, err := os.Open(fname)
+	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatal(err)
 	}
